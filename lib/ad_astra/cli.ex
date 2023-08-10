@@ -4,7 +4,11 @@ defmodule AdAstra.Cli do
   Handle the command line parsing and the dispatch to the various functions that end up generating a table of the last _n_ starts fromt the api
   """
 
-  def run(argv), do: parse_args(argv)
+  def run(argv) do
+    argv
+    |> parse_args()
+    |> process()
+  end
 
   @doc """
   'argv' can be -h or --help which returns :help
@@ -24,5 +28,17 @@ defmodule AdAstra.Cli do
       _ ->
         :help
     end
+  end
+
+  def process(:help) do
+    IO.puts("""
+      usage: stars
+    """)
+
+    System.halt(0)
+  end
+
+  def process({star, constellation}) do
+    AdAstra.NinjaAPI.fetch(star)
   end
 end
