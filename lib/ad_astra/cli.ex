@@ -40,5 +40,13 @@ defmodule AdAstra.Cli do
 
   def process({star, constellation}) do
     AdAstra.NinjaAPI.fetch(star)
+    |> decode_response()
+  end
+
+  def decode_response({:ok, body}), do: body
+
+  def decode_response({:error, error}) do
+    IO.puts("Error fetching from ninja stars api: #{error["message"]}")
+    System.halt(2)
   end
 end
