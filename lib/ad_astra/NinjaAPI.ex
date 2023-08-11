@@ -22,4 +22,8 @@ defmodule AdAstra.NinjaAPI do
 
   defp check_for_error(200), do: :ok
   defp check_for_error(_), do: :error
+
+  def extract_key_from_star(key, {:ok, star}) do
+    Enum.map(star, fn %{^key => value} -> value end)
+  end
 end

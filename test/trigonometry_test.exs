@@ -18,7 +18,7 @@ defmodule TrigonometryTest do
     assert right_asc_to_degrees([1, 5, 40]) == 16.416666666666664
   end
 
-  test "Calc the light year distance between two starts test" do
+  test "Calc the light year distance between two stars" do
     assert distance_between_stars_light_years(4, 15, 10) == 18.47
     assert distance_between_stars_light_years(2, 8, 12) == 14.56
   end
